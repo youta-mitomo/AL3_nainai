@@ -3,6 +3,7 @@
 #include "AxisIndicator.h"
 #include "Math/MyMath/MatrixMath.h"
 #include <cassert>
+#include"Skydome.h"
 
 GameScene::GameScene() {}
 
@@ -64,6 +65,7 @@ GameScene::~GameScene() {
 
 		viewProjection_.Initialize();
 		modelBlock_ = Model::Create();
+	    modelSkydome_=Model::CreateFormOBJ("sphere", true);
 	}
 
 	void GameScene::Update() {

@@ -17,6 +17,8 @@
 /// </summary>
 class GameScene {
 
+	//Model* modelSkydome_ = nullptr;
+
 public: // メンバ関数
 	/// <summary>
 	/// コンストクラタ
@@ -60,4 +62,5 @@ private: // メンバ変数
 	Matrix4x4 cameraMarix_;
 	Model* modelBlock_ = nullptr;
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
+	Model* modelSkydome_ = nullptr;
 };

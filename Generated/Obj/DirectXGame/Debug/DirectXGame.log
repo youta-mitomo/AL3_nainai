@@ -1,1 +1,8 @@
-﻿  DirectXGame.vcxproj -> C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\Generated\Outputs\Debug\DirectXGame.exe
+﻿  main.cpp
+  GameScene.cpp
+  Skydome.cpp
+C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\scene\GameScene.cpp(68,27): error C2039: 'CreateFormOBJ': 'Model' のメンバーではありません
+  C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\3d\Model.h(84,7):
+  'Model' の宣言を確認してください
+  
+C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\scene\GameScene.cpp(68,27): error C3861: 'CreateFormOBJ': 識別子が見つかりませんでした

@@ -18,6 +18,7 @@ GameScene::~GameScene() {
 	}
 	worldTransformBlocks_.clear();
 	delete debugCamera_;
+	delete modelSkydome_;
 }
 	
 
@@ -65,7 +66,7 @@ GameScene::~GameScene() {
 
 		viewProjection_.Initialize();
 		modelBlock_ = Model::Create();
-	    modelSkydome_=Model::CreateFormOBJ("sphere", true);
+	    modelSkydome_=Model::CreateFromOBJ("sphere", true);
 	}
 
 	void GameScene::Update() {
@@ -135,6 +136,9 @@ GameScene::~GameScene() {
 				modelBlock_->Draw(*worldTransformBlock, viewProjection_);
 			}
 		}
+
+		model
+
 
 		// 3Dオブジェクト描画後処理
 		Model::PostDraw();

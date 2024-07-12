@@ -8,6 +8,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "DebugCamera.h"
+#include "Skydome.h"
 
 
 #include <vector>
@@ -63,4 +64,5 @@ private: // メンバ変数
 	Model* modelBlock_ = nullptr;
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 	Model* modelSkydome_ = nullptr;
+	Skydome* skydome_ = nullptr;
 };

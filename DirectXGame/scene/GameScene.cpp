@@ -3,7 +3,6 @@
 #include "AxisIndicator.h"
 #include "Math/MyMath/MatrixMath.h"
 #include <cassert>
-#include"Skydome.h"
 
 GameScene::GameScene() {}
 
@@ -67,6 +66,8 @@ GameScene::~GameScene() {
 		viewProjection_.Initialize();
 		modelBlock_ = Model::Create();
 	    modelSkydome_=Model::CreateFromOBJ("sphere", true);
+	    skydome_ = new Skydome();
+	    skydome_->Initialize(modelSkydome_, &viewProjection_);
 	}
 
 	void GameScene::Update() {
@@ -100,7 +101,7 @@ GameScene::~GameScene() {
 			viewProjection_.UpdateMatrix();
 		}
 		
-
+		skydome_->Update();
 		
 	}
 
@@ -127,8 +128,10 @@ GameScene::~GameScene() {
 		// 3Dオブジェクト描画前処理
 		Model::PreDraw(commandList);
 
+
 		/// <summary>
 		/// ここに3Dオブジェクトの描画処理を追加できる
+	    
 		/// </summary>
 	
 		for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
@@ -137,7 +140,7 @@ GameScene::~GameScene() {
 			}
 		}
 
-		model
+		skydome_->Draw();
 
 
 		// 3Dオブジェクト描画後処理

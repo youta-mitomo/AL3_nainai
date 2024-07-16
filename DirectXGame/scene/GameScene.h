@@ -9,6 +9,7 @@
 #include "WorldTransform.h"
 #include "DebugCamera.h"
 #include "Skydome.h"
+#include"MapChipField.h"
 
 
 #include <vector>
@@ -46,6 +47,8 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
+	void GenerateBlocks();
+
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -65,4 +68,6 @@ private: // メンバ変数
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 	Model* modelSkydome_ = nullptr;
 	Skydome* skydome_ = nullptr;
+	MapChipField* mapChipField_ = nullptr;
+	
 };

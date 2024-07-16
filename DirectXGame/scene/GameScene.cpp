@@ -18,6 +18,7 @@ GameScene::~GameScene() {
 	worldTransformBlocks_.clear();
 	delete debugCamera_;
 	delete modelSkydome_;
+	delete mapChipField_;
 }
 	
 
@@ -68,6 +69,10 @@ GameScene::~GameScene() {
 	    modelSkydome_=Model::CreateFromOBJ("sphere", true);
 	    skydome_ = new Skydome();
 	    skydome_->Initialize(modelSkydome_, &viewProjection_);
+	    mapChipField_ = new MapChipField();
+	    mapChipField_->LoadMapChipCsv("Resources/block.csv");
+	    GenerateBlocks();
+
 	}
 
 	void GameScene::Update() {

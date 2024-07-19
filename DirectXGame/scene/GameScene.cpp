@@ -19,6 +19,7 @@ GameScene::~GameScene() {
 	delete debugCamera_;
 	delete modelSkydome_;
 	delete mapChipField_;
+	
 }
 	
 
@@ -40,20 +41,23 @@ GameScene::~GameScene() {
 		AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
 
 		//要素数
-		const uint32_t kNumblockVirtical = 10;
-		const uint32_t kNumBlockHorizonal = 20;
+		//const uint32_t kNumblockVirtical = 10;  
+		//const uint32_t kNumBlockHorizonal = 20;
+	    uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
+	    uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
+	
 		//ブロック1個分の横幅
 		const float kBlockWidth = 2.0f;
 		const float kBlockHeight = 2.0f;
 		//要素数を変更する
-		worldTransformBlocks_.resize(kNumblockVirtical);
-		for (uint32_t i = 0; i < kNumblockVirtical; i++) {
-			worldTransformBlocks_[i].resize(kNumBlockHorizonal);
+		worldTransformBlocks_.resize(10);
+		for (uint32_t i = 0; i <10; i++) {
+			worldTransformBlocks_[i].resize(5);
 		}
 
 		//	ブロックの生成
-		for (uint32_t row = 0; row < kNumblockVirtical; row++) {
-			for (uint32_t column = 0; column < kNumBlockHorizonal; column++) {
+		for (uint32_t row = 0; row < 10; row++) {
+			for (uint32_t column = 0; column < 5; column++) {
 				
 					worldTransformBlocks_[row][column] = new WorldTransform();
 					worldTransformBlocks_[row][column]->Initialize();
@@ -164,4 +168,13 @@ GameScene::~GameScene() {
 		Sprite::PostDraw();
 
 #pragma endregion
+	}
+
+	void GameScene::GenerateBlocks() {
+		uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
+	    uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
+
+		worldTransformBlocks_.resize(numBlockVirtical);
+	    for (uint32_t i=0;i<numBlockHorizontal;i++)
+
 	}

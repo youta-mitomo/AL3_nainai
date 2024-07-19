@@ -1,2 +1,14 @@
-﻿  GameScene.cpp
-  DirectXGame.vcxproj -> C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\Generated\Outputs\Debug\DirectXGame.exe
+﻿  MapChipField.cpp
+C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\MapChipField.cpp(40,12): error C2065: 'filePath': 定義されていない識別子です。
+C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\MapChipField.cpp(63,8): error C2872: 'mapChipTable': あいまいなシンボルです。
+  C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\MapChipField.cpp(8,36):
+  'std::map<std::string,MapChipType,std::less<std::string>,std::allocator<std::pair<const std::string,MapChipType>>> mapChipTable' である可能性があります。
+  C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\MapChipField.cpp(15,36):
+  または 'std::map<std::string,MapChipType,std::less<std::string>,std::allocator<std::pair<const std::string,MapChipType>>> `anonymous-namespace'::mapChipTable'
+  
+C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\MapChipField.cpp(64,31): error C2872: 'mapChipTable': あいまいなシンボルです。
+  C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\MapChipField.cpp(8,36):
+  'std::map<std::string,MapChipType,std::less<std::string>,std::allocator<std::pair<const std::string,MapChipType>>> mapChipTable' である可能性があります。
+  C:\Users\mimit\OneDrive\デスクトップ\AL3_nainai\DirectXGame\MapChipField.cpp(15,36):
+  または 'std::map<std::string,MapChipType,std::less<std::string>,std::allocator<std::pair<const std::string,MapChipType>>> `anonymous-namespace'::mapChipTable'
+  

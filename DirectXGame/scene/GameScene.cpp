@@ -4,7 +4,7 @@
 #include "Math/MyMath/MatrixMath.h"
 #include <cassert>
 
-GameScene::GameScene() {}
+GameScene::GameScene(){}
 
 GameScene::~GameScene() {
 
@@ -19,6 +19,7 @@ GameScene::~GameScene() {
 	delete debugCamera_;
 	delete modelSkydome_;
 	delete mapChipField_;
+
 	
 }
 	
@@ -41,14 +42,16 @@ GameScene::~GameScene() {
 		AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
 
 		//要素数
-		//const uint32_t kNumblockVirtical = 10;  
-		//const uint32_t kNumBlockHorizonal = 20;
-	    uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
-	    uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
+		/*const uint32_t kNumblockVirtical = 10;  
+		const uint32_t kNumBlockHorizontal = 20;*/
+
+	    /*uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
+	    uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();*/
 	
 		//ブロック1個分の横幅
-		const float kBlockWidth = 2.0f;
-		const float kBlockHeight = 2.0f;
+		/*const float kBlockWidth = 2.0f;
+		const float kBlockHeight = 2.0f;*/
+
 		//要素数を変更する
 		worldTransformBlocks_.resize(10);
 		for (uint32_t i = 0; i <10; i++) {
@@ -56,7 +59,7 @@ GameScene::~GameScene() {
 		}
 
 		//	ブロックの生成
-		for (uint32_t row = 0; row < 10; row++) {
+		/*for (uint32_t row = 0; row < 10; row++) {
 			for (uint32_t column = 0; column < 5; column++) {
 				
 					worldTransformBlocks_[row][column] = new WorldTransform();
@@ -66,15 +69,15 @@ GameScene::~GameScene() {
 						worldTransformBlocks_[row][column]->translation_.y = kBlockHeight * row;
 					}
 			}
-		}
+		}*/
 
 		viewProjection_.Initialize();
-		modelBlock_ = Model::Create();
+	    modelBlock_ = Model::Create();
 	    modelSkydome_=Model::CreateFromOBJ("sphere", true);
 	    skydome_ = new Skydome();
 	    skydome_->Initialize(modelSkydome_, &viewProjection_);
 	    mapChipField_ = new MapChipField();
-	    mapChipField_->LoadMapChipCsv("Resources/block.csv");
+	    mapChipField_->LoadMapChipCsv("Resources/map.csv");
 	    GenerateBlocks();
 
 	}
@@ -175,6 +178,22 @@ GameScene::~GameScene() {
 	    uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
 
 		worldTransformBlocks_.resize(numBlockVirtical);
-	    for (uint32_t i=0;i<numBlockHorizontal;i++)
+	    for (uint32_t i = 0; i < numBlockHorizontal; i++) {
+		    worldTransformBlocks_[i].resize(numBlockHorizontal);
+	    }
+		//ブロックの生成
+	    for (uint32_t i = 0; i < numBlockVirtical; ++i) {
 
+		    for (uint32_t j = 0; j < numBlockHorizontal; ++j) {
+				
+				if (mapChipField_->GetMapChipTypeByIndex(j, i) == MapChipType::kBlock) {
+
+					WorldTransform* worldTransform = new WorldTransform();
+				    worldTransform->Initialize();
+				    worldTransformBlocks_[i][j] = worldTransform;
+
+					worldTransformBlocks_[i][j]->translation_ = mapChipField_->GetMapChipPositionByIndex(j, i);
+			    }
+			}
+		}
 	}

@@ -60,6 +60,10 @@ private: // メンバ変数
 	
 	ViewProjection viewProjection_;
 
+	uint32_t textureHandle_ = 0u;
+
+	
+
 	Sprite sprite_;
 	bool isDebugCameraActive_ = false;
 	DebugCamera* debugCamera_ = nullptr;

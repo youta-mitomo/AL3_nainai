@@ -5,10 +5,10 @@
 #include <sstream>
 #include <string>
 
-std::map<std::string, MapChipType> mapChipTable = {
-    {"0", MapChipType::kBlank},
-    {"1", MapChipType::kBlock},
-};
+//std::map<std::string, MapChipType> mapChipTable = {
+//    {"0", MapChipType::kBlank},
+//    {"1", MapChipType::kBlock},
+//};
 
 namespace {
 
@@ -31,7 +31,7 @@ void MapChipField::ResetMapChipData() {
 	}
 }
 
-void MapChipField::LoadMapChipCsv(const std::string& filepath) {
+void MapChipField::LoadMapChipCsv(const std::string& filePath) {
 	// マップチップデータをリセット
 	ResetMapChipData();
 

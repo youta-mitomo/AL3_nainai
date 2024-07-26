@@ -38,29 +38,30 @@ GameScene::~GameScene() {
 			debugCamera_->GetViewProjection().translation_
 		);
 
+
 		AxisIndicator::GetInstance()->SetVisible(true);
 		AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
 
 		//要素数
-		/*const uint32_t kNumblockVirtical = 10;  
-		const uint32_t kNumBlockHorizontal = 20;*/
+		const uint32_t kNumblockVirtical = 10;  
+		const uint32_t kNumBlockHorizontal = 20;
 
-	    /*uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
+	   /* uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
 	    uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();*/
 	
 		//ブロック1個分の横幅
-		/*const float kBlockWidth = 2.0f;
-		const float kBlockHeight = 2.0f;*/
+		const float kBlockWidth = 2.0f;
+		const float kBlockHeight = 2.0f;
 
 		//要素数を変更する
-		worldTransformBlocks_.resize(10);
-		for (uint32_t i = 0; i <10; i++) {
-			worldTransformBlocks_[i].resize(5);
+	    worldTransformBlocks_.resize(kNumblockVirtical);
+	    for (uint32_t i = 0; i < kNumblockVirtical; i++) {
+		    worldTransformBlocks_[i].resize(kNumBlockHorizontal);
 		}
 
 		//	ブロックの生成
-		/*for (uint32_t row = 0; row < 10; row++) {
-			for (uint32_t column = 0; column < 5; column++) {
+	    for (uint32_t row = 0; row < kNumblockVirtical; row++) {
+		    for (uint32_t column = 0; column < kNumBlockHorizontal; column++) {
 				
 					worldTransformBlocks_[row][column] = new WorldTransform();
 					worldTransformBlocks_[row][column]->Initialize();
@@ -69,16 +70,22 @@ GameScene::~GameScene() {
 						worldTransformBlocks_[row][column]->translation_.y = kBlockHeight * row;
 					}
 			}
-		}*/
+		}
 
 		viewProjection_.Initialize();
-	    modelBlock_ = Model::Create();
+
+	    modelBlock_ = Model::CreateFromOBJ("block");
+
 	    modelSkydome_=Model::CreateFromOBJ("sphere", true);
+
 	    skydome_ = new Skydome();
 	    skydome_->Initialize(modelSkydome_, &viewProjection_);
-	    mapChipField_ = new MapChipField();
+
+	    mapChipField_ = new MapChipField;
 	    mapChipField_->LoadMapChipCsv("Resources/map.csv");
-	    GenerateBlocks();
+
+			    GenerateBlocks();
+	   
 
 	}
 
@@ -148,6 +155,8 @@ GameScene::~GameScene() {
 	
 		for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 			for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
+			    if (!worldTransformBlock)
+				    continue;
 				modelBlock_->Draw(*worldTransformBlock, viewProjection_);
 			}
 		}
@@ -174,14 +183,16 @@ GameScene::~GameScene() {
 	}
 
 	void GameScene::GenerateBlocks() {
+		//要素数
 		uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
 	    uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
 
+		//要素数を変更する
+		//列数を設定（縦方向のブロック数）
 		worldTransformBlocks_.resize(numBlockVirtical);
-	    for (uint32_t i = 0; i < numBlockHorizontal; i++) {
+	    for (uint32_t i = 0; i < numBlockVirtical; i++) {
 		    worldTransformBlocks_[i].resize(numBlockHorizontal);
-	    }
-		//ブロックの生成
+	    }		//ブロックの生成
 	    for (uint32_t i = 0; i < numBlockVirtical; ++i) {
 
 		    for (uint32_t j = 0; j < numBlockHorizontal; ++j) {
